@@ -6,28 +6,41 @@
 #include <string>
 #include <time.h>
 
+int userGuessCounter = 0;
+bool userPlaying = NULL;
+
 using namespace std;
 
 int generateRandomNumber(int maxNumber)
 {
 	srand(time(NULL));
-	int returnNumber = rand() % maxNumber + 1;
-	return returnNumber;
+	int rNum = rand() % maxNumber + 1;
+	return rNum;
 }
 
 int LevelEasy()
 {
-	int userGuess, userChoice, userGuessCounter = 0;
-	int randomNumber = generateRandomNumber(100);
+	if (userPlaying == true)
+	{
+
+	}
+	int userGuess, currentCounter;
+	int randomNumber = generateRandomNumber(10);
 
 	for (int c = 5; c > 0; c--)
 	{
 		cout << "Number: ";
 		cin >> userGuess;
 
-		userGuessCounter++;
+		currentCounter++;
 
-		if (userGuess < randomNumber)
+		if (userGuess == randomNumber)
+		{
+			cout << "Congratulations. it took you " << currentCounter << " tries." << endl;
+			break;
+		}
+
+		else if (userGuess < randomNumber)
 		{
 			cout << "Higher.\n";
 		}
@@ -35,45 +48,29 @@ int LevelEasy()
 		else if (userGuess > randomNumber)
 		{
 			cout << "Lower.\n";
-		}
-
-		else if (userGuess == randomNumber)
-		{
-			cout << "Good job. You got it in " << userGuessCounter << " tries." << endl;
-			break;
-		}
+		}		
 	}
-
-	return 0;
-}
-
-int LevelMedium()
-{
-	return 0;
-}
-
-int LevelHard()
-{
+	userGuessCounter = userGuessCounter + currentCounter;
 	return 0;
 }
 
 int main()
 {
-	int levelChoice;
+	int userChoice = NULL;
 
+	cout << "Current Count: " << userGuessCounter << "\n[1] Easy\n[2] Medium\n[3] Hard\n";
 	cout << "Choose your level" << endl;
-	cin >> levelChoice;
+	cin >> userChoice;
 
-	switch (levelChoice)
+	switch (userChoice)
 	{
 	case 1:
+		userPlaying = true;
 		LevelEasy();
 		break;
 	case 2:
-		LevelMedium();
 		break;
 	case 3:
-		LevelHard();
 		break;
 	default:
 		break;
