@@ -1,6 +1,6 @@
-//Random Number With Score
-// 4-10-18
-//Author: Aaron Wessley
+//Guessing game with higher-lower
+//4-24-18
+//Aaron Wessley
 
 #include <iostream>
 #include <time.h>
